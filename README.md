@@ -3,12 +3,13 @@
 Explore social media with this user-friendly platform that has a nice look and lots of features. Easily create and explore posts, and enjoy a strong authentication system and quick data fetching using React Query for a smooth user experience.
 
 ⚙️ Tech Stack
-React.js
-Appwrite
-React Query
-TypeScript
-Shadcn
-Tailwind CSS
+* React.js
+* Appwrite
+* React Query
+* TypeScript
+* Shadcn
+* Tailwind CSS
+
 🔋 Features
 👉 Authentication System: A robust authentication system ensuring security and user privacy
 
@@ -30,8 +31,6 @@ Tailwind CSS
 
 👉 React Query Integration: Incorporate the React Query (Tanstack Query) data fetching library for, Auto caching to enhance performance, Parallel queries for efficient data retrieval, First-class Mutations, etc
 
-👉 Backend as a Service (BaaS) - Appwrite: Utilize Appwrite as a Backend as a Service solution for streamlined backend development, offering features like authentication, database, file storage, and more
-
-and many more, including code architecture and reusability
+👉 Backend as a Service (BaaS) - Appwrite: Utilize Appwrite as a Backend as a Service solution for streamlined backend development, offering features like authentication, database, file storage, and many more, including code architecture and reusability
 
 🤸 I hope you enjoy my project!!
