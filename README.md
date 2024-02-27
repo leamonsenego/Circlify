@@ -1,30 +1,72 @@
-# React + TypeScript + Vite
+# Circlify - the social media app bringing you closer to your inner circle
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Explore social media with this user-friendly platform that has a nice look and lots of features. Easily create and explore posts, and enjoy a strong authentication system and quick data fetching using React Query for a smooth user experience.
 
-Currently, two official plugins are available:
+⚙️ Tech Stack
+React.js
+Appwrite
+React Query
+TypeScript
+Shadcn
+Tailwind CSS
+🔋 Features
+👉 Authentication System: A robust authentication system ensuring security and user privacy
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 Explore Page: Homepage for users to explore posts, with a featured section for top creators
 
-## Expanding the ESLint configuration
+👉 Like and Save Functionality: Enable users to like and save posts, with dedicated pages for managing liked and saved content
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+👉 Detailed Post Page: A detailed post page displaying content and related posts for an immersive user experience
 
-- Configure the top-level `parserOptions` property like this:
+👉 Profile Page: A user profile page showcasing liked posts and providing options to edit the profile
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+👉 Browse Other Users: Allow users to browse and explore other users' profiles and posts
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+👉 Create Post Page: Implement a user-friendly create post page with effortless file management, storage, and drag-drop feature
+
+👉 Edit Post Functionality: Provide users with the ability to edit the content of their posts at any time
+
+👉 Responsive UI with Bottom Bar: A responsive UI with a bottom bar, enhancing the mobile app feel for seamless navigation
+
+👉 React Query Integration: Incorporate the React Query (Tanstack Query) data fetching library for, Auto caching to enhance performance, Parallel queries for efficient data retrieval, First-class Mutations, etc
+
+👉 Backend as a Service (BaaS) - Appwrite: Utilize Appwrite as a Backend as a Service solution for streamlined backend development, offering features like authentication, database, file storage, and more
+
+and many more, including code architecture and reusability
+
+🤸 Quick Start
+Follow these steps to set up the project locally on your machine.
+
+Prerequisites
+
+Make sure you have the following installed on your machine:
+
+Git
+Node.js
+npm (Node Package Manager)
+Cloning the Repository
+
+git clone https://github.com/adrianhajdin/social_media_app.git
+cd social_media_app
+Installation
+
+Install the project dependencies using npm:
+
+npm install
+Set Up Environment Variables
+
+Create a new file named .env in the root of your project and add the following content:
+
+VITE_APPWRITE_URL=
+VITE_APPWRITE_PROJECT_ID=
+VITE_APPWRITE_DATABASE_ID=
+VITE_APPWRITE_STORAGE_ID=
+VITE_APPWRITE_USER_COLLECTION_ID=
+VITE_APPWRITE_POST_COLLECTION_ID=
+VITE_APPWRITE_SAVES_COLLECTION_ID=
+Replace the placeholder values with your actual Appwrite credentials. You can obtain these credentials by signing up on the Appwrite website.
+
+Running the Project
+
+npm start
+Open http://localhost:3000 in your browser to view the project.
