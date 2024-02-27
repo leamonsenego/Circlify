@@ -3,11 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import Loader from "@/components/shared/Loader"
 import PostStats from "@/components/shared/PostStats"
-
-import BACK_IMG from "/assets/icons/back.svg"
-import EDIT_IMG from "/assets/icons/edit.svg"
-import DELETE_IMG from "/assets/icons/delete.svg"
-import DEFAULT_IMG from "/assets/icons/profile-placeholder.svg"
+import GridPostList from "@/components/shared/GridPostList"
 
 import {
   useGetPostById,
@@ -33,7 +29,7 @@ const PostDetails = () => {
   )
 
   const handleDeletePost = () => {
-    deletePost({ postId: id, imageId: post?.imageId });
+    deletePost({ postId: id, imageId: post?.imageId })
     navigate(-1)
   }
 
@@ -45,7 +41,7 @@ const PostDetails = () => {
           variant="ghost"
           className="shad-button_ghost">
           <img
-            src={BACK_IMG}
+            src={"/assets/icons/back.svg"}
             alt="back"
             width={24}
             height={24}
@@ -72,7 +68,7 @@ const PostDetails = () => {
                 <img
                   src={
                     post?.creator.imageUrl ||
-                    DEFAULT_IMG
+                    "/assets/icons/profile-placeholder.svg"
                   }
                   alt="creator"
                   className="w-8 h-8 lg:w-12 lg:h-12 rounded-full"
@@ -98,7 +94,7 @@ const PostDetails = () => {
                   to={`/update-post/${post?.$id}`}
                   className={`${user.id !== post?.creator.$id && "hidden"}`}>
                   <img
-                    src={EDIT_IMG}
+                    src={"/assets/icons/edit.svg"}
                     alt="edit"
                     width={24}
                     height={24}
@@ -112,7 +108,7 @@ const PostDetails = () => {
                     user.id !== post?.creator.$id && "hidden"
                   }`}>
                   <img
-                    src={DELETE_IMG }
+                    src={"/assets/icons/delete.svg"}
                     alt="delete"
                     width={24}
                     height={24}
@@ -149,10 +145,14 @@ const PostDetails = () => {
         <h3 className="body-bold md:h3-bold w-full my-10">
           More Related Posts
         </h3>
-  
+        {isUserPostLoading || !relatedPosts ? (
+          <Loader />
+        ) : (
+          <GridPostList posts={relatedPosts} />
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PostDetails;
+export default PostDetails
