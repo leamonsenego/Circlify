@@ -13,6 +13,11 @@ import {
 import { multiFormatDateString } from "@/lib/utils"
 import { useUserContext } from "@/context/AuthContext"
 
+import DELETE_IMG from "/assets/icons/delete.svg"
+import EDIT_IMG from "/assets/icons/edit.svg"
+import DEFAULT_IMG from "/assets/icons/profile-placeholder.svg"
+import BACK_IMG from "/assets/icons/back.svg"
+
 const PostDetails = () => {
   const navigate = useNavigate()
   const { id } = useParams()
@@ -41,7 +46,7 @@ const PostDetails = () => {
           variant="ghost"
           className="shad-button_ghost">
           <img
-            src={"/assets/icons/back.svg"}
+            src={BACK_IMG}
             alt="back"
             width={24}
             height={24}
@@ -68,7 +73,7 @@ const PostDetails = () => {
                 <img
                   src={
                     post?.creator.imageUrl ||
-                    "/assets/icons/profile-placeholder.svg"
+                    DEFAULT_IMG
                   }
                   alt="creator"
                   className="w-8 h-8 lg:w-12 lg:h-12 rounded-full"
@@ -94,7 +99,7 @@ const PostDetails = () => {
                   to={`/update-post/${post?.$id}`}
                   className={`${user.id !== post?.creator.$id && "hidden"}`}>
                   <img
-                    src={"/assets/icons/edit.svg"}
+                    src={EDIT_IMG}
                     alt="edit"
                     width={24}
                     height={24}
@@ -108,7 +113,7 @@ const PostDetails = () => {
                     user.id !== post?.creator.$id && "hidden"
                   }`}>
                   <img
-                    src={"/assets/icons/delete.svg"}
+                    src={DELETE_IMG}
                     alt="delete"
                     width={24}
                     height={24}
@@ -152,7 +157,7 @@ const PostDetails = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default PostDetails
