@@ -2,6 +2,8 @@
 
 Explore social media with this user-friendly platform that has a nice look and lots of features. Easily create and explore posts, and enjoy a strong authentication system and quick data fetching using React Query for a smooth user experience.
 
+=> Link to the deployed project: https://circlify-h44pwm1fd-leas-projects-92ae08a8.vercel.app/
+
 ⚙️ Tech Stack
 * React.js
 * Appwrite
