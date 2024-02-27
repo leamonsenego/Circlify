@@ -123,13 +123,15 @@ export async function createPost(post: INewPost) {
     // Upload file to appwrite storage
     const uploadedFile = await uploadFile(post.file[0]);
 
-    if (!uploadedFile) throw Error;
+    if (!uploadedFile) {
+      throw new Error("File upload failed");
+    }
 
     // Get file url
     const fileUrl = getFilePreview(uploadedFile.$id);
     if (!fileUrl) {
       await deleteFile(uploadedFile.$id);
-      throw Error;
+      throw new Error("Getting file URL failed");
     }
 
     // Convert tags into array
@@ -152,12 +154,14 @@ export async function createPost(post: INewPost) {
 
     if (!newPost) {
       await deleteFile(uploadedFile.$id);
-      throw Error;
+      throw new Error("Post creation failed");
     }
 
     return newPost;
   } catch (error) {
-    console.log(error);
+    const err = error as Error;
+    console.error("Error in createPost:", err.message || error);
+    throw error;
   }
 }
 
@@ -225,7 +229,7 @@ export async function searchPosts(searchTerm: string) {
 }
 
 export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
-  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(20)];
+  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
 
   if (pageParam) {
     queries.push(Query.cursorAfter(pageParam.toString()));

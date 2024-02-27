@@ -27,9 +27,9 @@ type PostFormProps = {
   action: "Create" | "Update"
 }
 const PostForm = ({ post, action }: PostFormProps) => {
-  const navigate = useNavigate();
-  const { toast } = useToast();
-  const { user } = useUserContext();
+  const navigate = useNavigate()
+  const { toast } = useToast()
+  const { user } = useUserContext()
   const form = useForm<z.infer<typeof PostValidation>>({
     resolver: zodResolver(PostValidation),
     defaultValues: {
@@ -38,16 +38,16 @@ const PostForm = ({ post, action }: PostFormProps) => {
       location: post ? post.location : "",
       tags: post ? post.tags.join(",") : "",
     },
-  });
+  })
 
   // Query
-  const { mutateAsync: createPost, isPending: isLoadingCreate } =
-    useCreatePost();
-  const { mutateAsync: updatePost, isPending: isLoadingUpdate } =
-    useUpdatePost();
+  const { mutateAsync: createPost, isLoading: isLoadingCreate } =
+    useCreatePost()
+  const { mutateAsync: updatePost, isLoading: isLoadingUpdate } =
+    useUpdatePost()
 
   // Handler
-  const handleSubmit = async (value: z.infer<typeof PostValidation>) => {
+  async function handleSubmit (value: z.infer<typeof PostValidation>) {
     // ACTION = UPDATE
     if (post && action === "Update") {
       const updatedPost = await updatePost({
@@ -55,29 +55,43 @@ const PostForm = ({ post, action }: PostFormProps) => {
         postId: post.$id,
         imageId: post?.imageId,
         imageUrl: post?.imageUrl,
-      });
+      })
 
       if (!updatedPost) {
         toast({
           title: `${action} post failed. Please try again.`,
-        });
+        })
       }
-      return navigate(`/posts/${post.$id}`);
+      return navigate(`/posts/${post.$id}`)
     }
 
     // ACTION = CREATE
-    const newPost = await createPost({
-      ...value,
-      userId: user.id,
-    });
-
-    if (!newPost) {
-      toast({
-        title: `${action} post failed. Please try again.`,
+    try {
+      console.log("Creating post with payload:", {
+        ...value,
+        userId: user.id,
       });
+    
+      const newPost = await createPost({
+        ...value,
+        userId: user.id,
+      });
+    
+      console.log("API response:", newPost);
+    
+      if (!newPost) {
+        console.error(`${action} post creation failed. API response:`, newPost);
+        toast({
+          title: `${action} post failed. Please try again.`,
+        });
+      }
+    
+      navigate("/");
+    } catch (error) {
+      console.error(`${action} post creation failed. Error:`, error);
     }
-    navigate("/");
-  };
+  }
+
 
   return (
     <Form {...form}>
@@ -173,4 +187,4 @@ const PostForm = ({ post, action }: PostFormProps) => {
   );
 };
 
-export default PostForm;
+export default PostForm
